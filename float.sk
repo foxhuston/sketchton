@@ -1,0 +1,23 @@
+// pragma options "--slv-parallel -V5 --fe-fpencoding TO_BACKEND";
+pragma options "--fe-fpencoding TO_BACKEND";
+
+#include "../../sketchlib/math.skh"
+
+float prop_var(int x) {
+  return _cast_int_float(0);
+}
+
+harness void does_not_terminate(int x) {
+  float y = prop_var(x);
+  assert y == 0.0;
+}
+
+// harness void succeeds_too(int x) {
+//   float y = prop_var(x) * ??;
+//   assert y == 0.0;
+// }
+
+// harness void succeeds(int x) {
+//   float y = _cast_int_float(x) * ??;
+//   assert y == 0.0;
+// }

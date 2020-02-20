@@ -1,0 +1,32 @@
+// pragma options "--slv-parallel -V5 --fe-fpencoding TO_BACKEND";
+pragma options "--fe-fpencoding TO_BACKEND";
+
+#include "../../sketchlib/math.skh"
+
+float target(int x) {
+  float out = 0.0;
+  for(int i = 1; i <= x; i++) {
+    out += 1.0 / _cast_int_float(i);
+  }
+  return out;
+}
+
+// generator float harmonic(float x, int bnd) {
+//   assert bnd > 0;
+
+//   generator float factor() {
+//     return {| x | 1.0/(harmonic(x, bnd-1)) | sqrt(harmonic(x, bnd-1)) | 0.0-(harmonic(x, bnd-1)) |};
+//   }
+
+//   return {| factor() | factor() + factor() | factor() * factor() |};
+// }
+
+generator float test(float x, int bnd) {
+  return x;
+}
+
+
+harness void blah(float x) {
+  assert x > 51.0 && x < 120.0;
+  assert test(x, 1) == x;
+}
